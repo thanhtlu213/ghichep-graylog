@@ -1,0 +1,32 @@
+### /etc/graylog/collector/collector.conf
+
+server-url = "http://172.16.69.150:12900/"
+collector-id = "file:/etc/graylog/collector/collector-id"
+inputs {
+
+auth-log {
+    type = "file"
+    path = "/var/log/auth.log"
+    }
+
+libvirt-log {
+    type = "file"
+    path = "/var/log/libvirt/libvirtd.log"
+    }
+nova-log {
+    type = "file"
+    path = "/var/log/nova/nova-compute.log"
+    }
+neutron-log {
+    type = "file"
+    path = "/var/log/neutron/neutron-linuxbridge-agent.log"
+    }
+
+}
+outputs {
+  graylog-server {
+    type = "gelf"
+    host = "172.16.69.150"
+    port = 12201
+  }
+}
